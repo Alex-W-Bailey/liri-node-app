@@ -7,4 +7,4 @@ How To Run LIRI
 - HTTPS Link: https://github.com/xKingAlex/liri-node-app.git
 - SSH Link: git@github.com:xKingAlex/liri-node-app.git
 
-Go to terminal, gitbash, or any other command line application and enter : git clone <repo_link>
+Go to terminal, gitbash, or any other command line application and enter : *git clone <repo_link>*
