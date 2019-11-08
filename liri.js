@@ -17,29 +17,26 @@ if(argv.length > 3){
     }
 }
 
+doAction(action, userInput);
 
-switch(action){
-    case "concert-this":
-        concertThis();
-        break;
-    case "spotify-this":
-        spotifyThis();
-        break;
-    case "movie-this":
-        movieThis();
-        break;
-
+function doAction(doThisAction, item){
+    switch(doThisAction){
+        case "concert-this":
+            concertThis(item);
+            break;
+        case "spotify-this":
+            spotifyThis(item);
+            break;
+        case "movie-this":
+            movieThis(item);
+            break;
+    
+    }
 }
 
-if(action === "concert-this"){
-    concertThis();
-}
-else if(action === "spotify-this"){
-    spotifyThis();
-}
 
-function concertThis(){
-    var artistName = userInput.trim();
+function concertThis(item){
+    var artistName = item.trim();
     console.log(artistName);
 
     var concertURL = "https://rest.bandsintown.com/artists/" + artistName + "/events?app_id=codingbootcamp";
@@ -82,8 +79,8 @@ ${cleanDate[1] + "/" + cleanDate[2] + "/" + cleanDate[0]} @ ${timeInt + ":00 PM"
     })
 }
 
-function spotifyThis(){
-    spotify.search({type: 'track', query: userInput})
+function spotifyThis(item){
+    spotify.search({type: 'track', query: item})
     .then(function(response){
         var dataRef = response.tracks.items[0];
         var artist = dataRef.artists[0].name;
@@ -106,14 +103,36 @@ Album: ${album}
     })
 }
 
-function movieThis(){
+function movieThis(item){
     var apiKey = keys.ombd.key;
 
-    console.log("API Key: " + apiKey);
-
-    axios.get(`http://www.omdbapi.com/?t=${userInput}&apikey=${apiKey}`)
+    axios.get(`http://www.omdbapi.com/?t=${item}&apikey=${apiKey}`)
     .then(function(response){
-        console.log(response);
+        var movieDataRef = response.data;
+
+        var title = movieDataRef.Title;
+        var year = movieDataRef.Year.Value;
+        var IMBD_Rating = movieDataRef.Ratings[0].Value;
+        var Rotten_Rating = movieDataRef.Ratings[1].Value;
+        var country = movieDataRef.Country;
+        var lang = movieDataRef.Language;
+        var plot = movieDataRef.Plot;
+        var actors = movieDataRef.Actors;
+
+        console.log(`
+Movie Info
+__________
+
+Name: ${title}
+Released: ${year}
+IMBD Rating: ${IMBD_Rating}
+Rotten Tomatoes: ${Rotten_Rating}
+Country: ${country}
+Language: ${lang}
+Plot: ${plot}
+Actors: ${actors}
+        `)
+
     })
     .catch(function (error) {
         console.log(error);
