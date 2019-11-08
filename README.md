@@ -8,4 +8,3 @@ How To Run LIRI
 - SSH Link: git@github.com:xKingAlex/liri-node-app.git
 
 Go to terminal, gitbash, or any other command line application and enter : git clone <repo_link>
-
