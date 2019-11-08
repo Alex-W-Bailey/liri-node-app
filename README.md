@@ -31,7 +31,7 @@ Next you will need an OMBD API
 
 - Now go to your command line application and type : *touch .env*
 
-- Open you .env file to edit it with the following code
+- Open your .env file to edit it with the following code
 
 ```
 # Spotify API Keys
