@@ -54,7 +54,19 @@ OMBD_KEY=your-key-here
 RUN THE APP
 -----------
 
-Enter the command *node liria.js spotify-this song-name* and you should get the data back
+**List of commands**
+- movie-this movie-name
+  - this gives you movie info
+- spotify-this song-name
+  - this gives you song info
+- concert-this artist-name
+  - this gives you the next concert for an artist or band
+- do-what-it-says
+  - this will do whatever is in the *random.txt* file
+
+Enter the run command
+
+- Ex: *node liria.js spotify-this Circles* and you should get the following data back
 
 ![image](https://user-images.githubusercontent.com/41297819/68450510-ef5ddf80-01b0-11ea-84ba-a874f195f4ca.png)
 
