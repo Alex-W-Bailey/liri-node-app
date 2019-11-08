@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const keys = require("./keys.js");
 const axios = require('axios');
+const fs = require('fs');
 const Spotify = require('node-spotify-api');
 
 var spotify = new Spotify(keys.spotify);
@@ -30,8 +31,10 @@ function doAction(doThisAction, item){
         case "movie-this":
             movieThis(item);
             break;
-    
-    }
+        case "do-what-it-says":
+            doWhatItSays();
+            break
+    };
 }
 
 
@@ -84,7 +87,7 @@ function spotifyThis(item){
     .then(function(response){
         var dataRef = response.tracks.items[0];
         var artist = dataRef.artists[0].name;
-        var songName = userInput;
+        var songName = item;
         var previewLink = dataRef.external_urls.spotify;
         var album = dataRef.album.name
 
@@ -137,5 +140,17 @@ Actors: ${actors}
     .catch(function (error) {
         console.log(error);
       });
+}
+
+function doWhatItSays(){
+    var text = fs.readFileSync('random.txt','utf8')
+    
+    //gets the action and the item from the random.txt file
+    var actionAndItem = text.split(",");
+    var action = actionAndItem[0];
+    var item = actionAndItem[1];
+
+    //do whatever the file says
+    doAction(action, item);
 }
 
